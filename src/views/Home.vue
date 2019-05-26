@@ -2,7 +2,7 @@
   <div class="home">
     <button @click="visible = !visible">选择时间！</button>
     
-    <picker :visible.sync="visible" @confirm="onConfirm" :during="10" startTime="2019-05-21 11:20:xx22"/>
+    <picker :visible.sync="visible" @confirm="onConfirm" :during="10" startTime="2019-05-21 11:20:22"/>
   </div>
 </template>
 
