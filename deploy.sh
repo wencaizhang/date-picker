@@ -18,6 +18,6 @@ git init
 git add -A
 git commit -m ":rocket: deploy ${currTime}"
 
-git push -f https://github.com/wencaizhang/date-picker gh-pages
+git push -f https://github.com/wencaizhang/date-picker master:gh-pages
 
 cd -
