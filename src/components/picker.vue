@@ -215,7 +215,7 @@ export default {
     },
 
     onOpen() {
-      this.getCurrTime();
+      this.currTime = this.getCurrTime();
       this.handleStartTime();
       this.showPicker();
     },

@@ -14,7 +14,7 @@ export function getArrayByNum(num, space = 1) {
  */
 export function getCurrTime() {
   const date = new Date();
-  const obj = {
+  const currTime = {
     YYYY: date.getFullYear(),
     MM: date.getMonth() + 1,
     DD: date.getDate(),
@@ -23,10 +23,10 @@ export function getCurrTime() {
     ss: date.getSeconds()
   };
 
-  Object.keys(obj).forEach(key => {
-    obj[key] = String(obj[key]).padStart(2, 0);
+  Object.keys(currTime).forEach(key => {
+    currTime[key] = String(currTime[key]).padStart(2, 0);
   });
-  this.currTime = obj;
+  return currTime;
 }
 
 /**
@@ -36,7 +36,7 @@ export function getCurrTime() {
 export function transToTimestamp(time = null) {
   // 没有对 time 做合法性校验
   // 假设传入的 time 都是合法的时间格式：2019-04-01 13:10:10
-  const date = new Date(time);
+  const date = timestamp ? new Date(timestamp) : new Date();
   const timestamp = date.getTime(); // 13 位数字，精确到毫秒
   return timestamp;
 }
@@ -47,10 +47,9 @@ export function transToTimestamp(time = null) {
  * @param {String} formats 最终返回的时间格式
  * YYYY|MM|DD|hh|mm|ss，分别是年/月/日/时/分/秒，可自由组合成想要的时间格式
  */
-export function dateFormat(timestamp, formats) {
-  formats = formats || "YYYY-MM-DD hh:mm:ss";
-  var date = timestamp ? new Date(timestamp) : new Date();
-  var obj = {
+export function dateFormat(timestamp, formats="YYYY-MM-DD hh:mm:ss") {
+  const date = timestamp ? new Date(timestamp) : new Date();
+  const obj = {
     YYYY: date.getFullYear(),
     MM: date.getMonth() + 1,
     DD: date.getDate(),
