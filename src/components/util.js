@@ -1,14 +1,12 @@
-
 /**
  * 传入一个数字参数，得到连续的数字数组
  * @param {Number} num [正常时间格式，如：2019-04-01 13:10:10]
  * 例如，传入 num 为 4，得到 ['00', '01', '02', '03']
  */
-export function getArrayByNum(num) {
+export function getArrayByNum(num, space = 1) {
   if (num <= 0) return [];
-  return [].map.call([...Array(num).keys()], item =>
-    String(item).padStart(2, 0)
-  );
+  return [].filter.call([...Array(num).keys()], item => item % space === 0)
+    .map(item => String(item).padStart(2, 0));
 }
 
 /**
@@ -16,7 +14,7 @@ export function getArrayByNum(num) {
  */
 export function getCurrTime() {
   const date = new Date();
-  this.currTime = {
+  const obj = {
     YYYY: date.getFullYear(),
     MM: date.getMonth() + 1,
     DD: date.getDate(),
@@ -24,6 +22,11 @@ export function getCurrTime() {
     mm: date.getMinutes(),
     ss: date.getSeconds()
   };
+
+  Object.keys(obj).forEach(key => {
+    obj[key] = String(obj[key]).padStart(2, 0);
+  });
+  this.currTime = obj;
 }
 
 /**
@@ -48,13 +51,16 @@ export function dateFormat(timestamp, formats) {
   formats = formats || "YYYY-MM-DD hh:mm:ss";
   var date = timestamp ? new Date(timestamp) : new Date();
   var obj = {
-    YYYY: String(date.getFullYear()).padStart(2, 0),
-    MM: String(date.getMonth() + 1).padStart(2, 0),
-    DD: String(date.getDate()).padStart(2, 0),
-    hh: String(date.getHours()).padStart(2, 0),
-    mm: String(date.getMinutes()).padStart(2, 0),
-    ss: String(date.getSeconds()).padStart(2, 0)
+    YYYY: date.getFullYear(),
+    MM: date.getMonth() + 1,
+    DD: date.getDate(),
+    hh: date.getHours(),
+    mm: date.getMinutes(),
+    ss: date.getSeconds()
   };
+  Object.keys(obj).forEach(key => {
+    obj[key] = String(obj[key]).padStart(2, 0);
+  });
   return formats.replace(/YYYY|MM|DD|hh|mm|ss/gi, function (matches) {
     return obj[matches];
   });

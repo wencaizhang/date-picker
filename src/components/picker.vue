@@ -32,6 +32,9 @@ export default {
       type: String,
       default: today,
       validator: value => {
+        if( value === '') {
+          return today;
+        }
         const timeReg = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/;
         if (!timeReg.test(value)) {
           throw `startTime 格式不正确：${value}`; 
@@ -43,6 +46,11 @@ export default {
       // 时长: 90 天
       type: Number,
       default: 90
+    },
+    space: {
+      // 时间间隔：15 分钟
+      type: [String, Number],
+      default: 15
     },
     position: {
       // 位置，可选值为 top bottom right left
@@ -127,7 +135,7 @@ export default {
       const { indexList, columns } = this.pickerResult;
       const { hh, mm } = this.currTime;
       const hours = getArrayByNum(24);
-      const minutes = ["00", "15", "30", "45"];
+      const minutes = getArrayByNum(60, this.space);
       const newColumns = JSON.parse(JSON.stringify(columns));
       const list = [];
 
@@ -217,7 +225,7 @@ export default {
       const { YYYY, MM, DD, hh, mm, ss } = this.currTime;
       const str = values[0];
       let result, time, timestamp;
-
+      console.log(this.currTime)
       if (str === "今天") {
         time = [YYYY, MM, DD].join("-") + " " + values[1] + ":00";
       } else {
