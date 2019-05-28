@@ -2,11 +2,9 @@
 
 基于 vant 的 popup 和 picker 组件开发的一个日期选择组件。
 
-
 ## 描述
 
 指定开始时间（`startTime`）和时间选择范围（`during`），以 15 分钟（`interval`）为间隔，选择某一个时间点。
-
 
 ## 预览
 
@@ -15,6 +13,12 @@
 或者直接使用手机扫描二维码：
 
 ![扫描二维码预览](./images/QR.png)
+
+## 使用
+
+拷贝位于 [`src/components`](./src/components/) 目录下的文件至你自己的项目中即可，其中 `picker.vue` 处理主要逻辑，`util.js` 主要是时间转换的工具函数。
+
+需要注意本组件依赖于 [vant 组件库](https://youzan.github.io/vant/#/zh-CN/intro)的 popup 和 picker 组件。
 
 ## 可配置项
 
