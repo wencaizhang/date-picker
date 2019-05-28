@@ -2,7 +2,13 @@
 
 基于 vant 的 popup 和 picker 组件开发的一个日期选择组件。
 
+
+## 描述
+
 指定开始时间（`startTime`）和时间选择范围（`during`），以 15 分钟（`interval`）为间隔，选择某一个时间点。
+
+
+## 预览
 
 预览地址（如果是 PC 端请使用开发者工具将浏览器调成手机模式）：[https://wencaizhang.github.io/date-picker/](https://wencaizhang.github.io/date-picker/)
 
