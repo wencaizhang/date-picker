@@ -3,9 +3,9 @@
  * @param {Number} num [正常时间格式，如：2019-04-01 13:10:10]
  * 例如，传入 num 为 4，得到 ['00', '01', '02', '03']
  */
-export function getArrayByNum(num, space = 1) {
+export function getArrayByNum(num, interval = 1) {
   if (num <= 0) return [];
-  return [].filter.call([...Array(num).keys()], item => item % space === 0)
+  return [].filter.call([...Array(num).keys()], item => item % interval === 0)
     .map(item => String(item).padStart(2, 0));
 }
 

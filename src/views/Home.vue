@@ -1,28 +1,28 @@
 <template>
   <div class="home">
     <button @click="visible = !visible">选择时间！</button>
-    
-    <picker :visible.sync="visible" @confirm="onConfirm" :during="10" :space="20"/>
+
+    <picker :visible.sync="visible" @confirm="onConfirm" :during="10" :interval="20"/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import picker from '@/components/picker.vue';
+import picker from "@/components/picker.vue";
 
 export default {
-  name: 'home',
+  name: "home",
   components: {
-    picker,
+    picker
   },
-  data () {
+  data() {
     return {
-      visible: false,
-    }
+      visible: false
+    };
   },
   methods: {
-    onConfirm (time, timestamp) {
-      console.log( [].slice.apply(arguments))
+    onConfirm(time, timestamp) {
+      console.log([].slice.apply(arguments));
     }
   }
 };

@@ -37,7 +37,7 @@ export default {
         }
         const timeReg = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/;
         if (!timeReg.test(value)) {
-          throw `startTime 格式不正确：${value}`; 
+          throw `startTime 格式不正确：${value}`;
         }
         return value;
       },
@@ -47,7 +47,7 @@ export default {
       type: Number,
       default: 90
     },
-    space: {
+    interval: {
       // 时间间隔：15 分钟
       type: [String, Number],
       default: 15
@@ -135,7 +135,7 @@ export default {
       const { indexList, columns } = this.pickerResult;
       const { hh, mm } = this.currTime;
       const hours = getArrayByNum(24);
-      const minutes = getArrayByNum(60, this.space);
+      const minutes = getArrayByNum(60, this.interval);
       const newColumns = JSON.parse(JSON.stringify(columns));
       const list = [];
 
