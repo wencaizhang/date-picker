@@ -14,7 +14,7 @@
 <script>
 import {
   getArrayByNum,
-  getCurrTime,
+  getTimeInfo,
   transToTimestamp,
   dateFormat,
   getWeekDay
@@ -99,7 +99,7 @@ export default {
 
   methods: {
     getArrayByNum,
-    getCurrTime,
+    getTimeInfo,
     transToTimestamp,
     dateFormat,
     getWeekDay,
@@ -215,7 +215,7 @@ export default {
     },
 
     onOpen() {
-      this.currTime = this.getCurrTime();
+      this.currTime = this.getTimeInfo();
       this.handleStartTime();
       this.showPicker();
     },

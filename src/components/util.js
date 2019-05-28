@@ -10,11 +10,13 @@ export function getArrayByNum(num, interval = 1) {
 }
 
 /**
- * 获取当前时间信息：年月日时分秒
+ * 获取指定时间戳的时间信息：年月日时分秒
+ * 如果不指定时间戳，按照当前时间计算
+ * @param {Number} timestamp 时间戳
  */
-export function getCurrTime() {
-  const date = new Date();
-  const currTime = {
+export function getTimeInfo(timestamp) {
+  const date = timestamp ? new Date(timestamp) : new Date();
+  const timeInfo = {
     YYYY: date.getFullYear(),
     MM: date.getMonth() + 1,
     DD: date.getDate(),
@@ -23,10 +25,10 @@ export function getCurrTime() {
     ss: date.getSeconds()
   };
 
-  Object.keys(currTime).forEach(key => {
-    currTime[key] = String(currTime[key]).padStart(2, 0);
+  Object.keys(timeInfo).forEach(key => {
+    timeInfo[key] = String(timeInfo[key]).padStart(2, 0);
   });
-  return currTime;
+  return timeInfo;
 }
 
 /**
@@ -48,26 +50,15 @@ export function transToTimestamp(time = null) {
  * YYYY|MM|DD|hh|mm|ss，分别是年/月/日/时/分/秒，可自由组合成想要的时间格式
  */
 export function dateFormat(timestamp, formats="YYYY-MM-DD hh:mm:ss") {
-  const date = timestamp ? new Date(timestamp) : new Date();
-  const obj = {
-    YYYY: date.getFullYear(),
-    MM: date.getMonth() + 1,
-    DD: date.getDate(),
-    hh: date.getHours(),
-    mm: date.getMinutes(),
-    ss: date.getSeconds()
-  };
-  Object.keys(obj).forEach(key => {
-    obj[key] = String(obj[key]).padStart(2, 0);
-  });
+  const timeInfo = getTimeInfo(timestamp);
   return formats.replace(/YYYY|MM|DD|hh|mm|ss/gi, function (matches) {
-    return obj[matches];
+    return timeInfo[matches];
   });
 }
 
 /**
  * 将时间戳转化为星期几
- * @param {String} timestamp 时间戳
+ * @param {Number} timestamp 时间戳
  */
 export function getWeekDay(timestamp) {
   // 一周的第一天是周日
