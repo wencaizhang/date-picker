@@ -1,11 +1,13 @@
 /**
  * 传入一个数字参数，得到连续的数字数组
- * @param {Number} num [正常时间格式，如：2019-04-01 13:10:10]
+ * @param {Number} num
+ * @param {Number} interval 数字数组元素之间的间隔，默认为 1
  * 例如，传入 num 为 4，得到 ['00', '01', '02', '03']
  */
 export function getArrayByNum(num, interval = 1) {
   if (num <= 0) return [];
-  return [].filter.call([...Array(num).keys()], item => item % interval === 0)
+  return [...Array(num).keys()]
+    .filter(item => item % interval === 0)
     .map(item => String(item).padStart(2, 0));
 }
 
@@ -38,7 +40,7 @@ export function getTimeInfo(timestamp) {
 export function transToTimestamp(time = null) {
   // 没有对 time 做合法性校验
   // 假设传入的 time 都是合法的时间格式：2019-04-01 13:10:10
-  const date = timestamp ? new Date(timestamp) : new Date();
+  const date = time ? new Date(time.replace(/-/g, '/')) : new Date();
   const timestamp = date.getTime(); // 13 位数字，精确到毫秒
   return timestamp;
 }
@@ -62,7 +64,7 @@ export function dateFormat(timestamp, formats="YYYY-MM-DD hh:mm:ss") {
  */
 export function getWeekDay(timestamp) {
   // 一周的第一天是周日
-  const obj = ["日", "一", "二", "三", "四", "五", "六"];
+  const map = ["日", "一", "二", "三", "四", "五", "六"];
   const index = new Date(timestamp).getDay();
-  return "星期" + obj[index];
+  return "星期" + map[index];
 }
